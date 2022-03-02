@@ -21,7 +21,7 @@ const Register = observer(() => {
         user.setUser(data)
         user.setIsAuth(true)
 
-        navigate(TEST_ROUTE + '/:1') // заменить на путь к главной странице после её создания
+        navigate(TEST_ROUTE + '/1') // заменить на путь к главной странице после её создания
         alert('You registered. Congradulations!')
       } catch (e) {
         if (e.response && e.response.data) {    
