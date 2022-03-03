@@ -6,31 +6,32 @@ import Container from "react-bootstrap/Container"
 import Button from "react-bootstrap/Button"
 import {useNavigate} from "react-router-dom"
 
-import { REGISTRATION_ROUTE, TEST_ROUTE, LOGIN_ROUTE } from "../utils/consts"
+import { REGISTRATION_ROUTE, TEST_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from "../utils/consts"
 import { observer } from "mobx-react-lite"
 
 const NavBar = observer(() => {
-    const {user} = useContext(Context)
+    const {user: currentUser} = useContext(Context)
     const navigate = useNavigate()
 
     const signOut = () => {
         localStorage.setItem('token', null)
-        user.setUser({})
-        user.setIsAuth(false)
+        currentUser.setUser({})
+        currentUser.setIsAuth(false)
 
         navigate(LOGIN_ROUTE)
     }
 
     return (
-        <Navbar bg="primary" variant="dark">
+        <Navbar bg="primary" variant="dark" className="mb-4">
             <Container>
-                <Navbar.Brand href={TEST_ROUTE + '/:1'}>BestTest</Navbar.Brand>
+                <Navbar.Brand href={TEST_ROUTE + '/1'}>BestTest</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href={TEST_ROUTE + '/:1'}>Home</Nav.Link>
+                    <Nav.Link href={TEST_ROUTE + '/1'}>Home</Nav.Link>
                 </Nav>
-                {user.isAuth ?
+                {currentUser.isAuth ?
                     <Nav>
-                        <Button onClick={signOut}>Sign Out</Button>
+                        <Nav.Link onClick={signOut} className="mx-1">Sign Out</Nav.Link>
+                        <Button href={PROFILE_ROUTE + `/${currentUser.user?.id}`}>My Profile</Button>
                     </Nav>
                     :
                     <Nav>
