@@ -1,7 +1,11 @@
+const Uuid = require('uuid')
+const fs = require('fs')
+
 const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User} = require('../models/models')
+const testController = require('./testController')
 
 const generateJWT = (id, email) => {
     return jwt.sign(
@@ -49,8 +53,52 @@ class UserConstroller {
 
     async getOne(req, res) {
         const {id} = req.params
-        const user = await User.findOne({where: {id}},
-        )
+        const user = await User.findOne({where: {id}})
+        return res.json(user)
+    }
+
+    async uploadAvatar(req, res) {
+        try {
+            const file = req.files.file
+            const user = await User.findOne({where: {id: req.user.id}})
+            const avatarName = Uuid.v4() + '.jpg'            
+            const oldName = user.avatarUrl
+
+            if (!fs.existsSync(process.env.STATIC_PATH)){
+                fs.mkdirSync(process.env.STATIC_PATH)
+            }
+
+            file.mv(process.env.STATIC_PATH + "/" + avatarName)
+            user.avatarUrl = avatarName
+            await user.save()
+
+            if (oldName)
+                fs.unlinkSync(process.env.STATIC_PATH + "/" + oldName)
+
+            return res.json(user)
+        } catch (e) {
+            console.log(e)
+            return res.status(400).json({message: 'Upload avatar error'})
+        }
+    }
+
+    async deleteAvatar(req, res) {
+        try {
+            const user = await User.findOne({where: {id: req.user.id}})
+            fs.unlinkSync(process.env.STATIC_PATH + "/" + user.avatarUrl)
+            user.avatarUrl = null
+            await user.save()
+            return res.json(user)
+        } catch (e) {
+            console.log(e)
+            return res.status(400).json({message: 'Delete avatar error'})
+        }
+    }
+
+    async editProfile(req, res) {
+        const {id, email, name, bio} = req.body
+        const user = await User.findOne({where: {id}})
+        await user.update({email, name, bio})
         return res.json(user)
     }
 }

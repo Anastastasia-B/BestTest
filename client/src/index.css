@@ -2,8 +2,21 @@
   box-sizing: border-box;
 }
 
+a, button {
+  white-space: nowrap;
+}
+
+body {
+  background-color: rgba(34, 35, 58, 0.09);
+}
+
 p {
   margin-bottom: 0.25rem;
+}
+
+.page-container {
+  background-color: white;
+  min-height: calc(100vh - 56px);
 }
 
 .auth-addintional-section a {
@@ -11,6 +24,7 @@ p {
 }
 
 .auth-form-container {
+  background-color: white;
   width: 400px;
   height: 400px;
   display: flex;
@@ -28,7 +42,7 @@ p {
 
 .profile_avatar_section {
   display: inline-block;
-  margin-right: 1rem;
+  margin-right: 1.4rem;
 }
 
 .profile_avatar_large {
@@ -42,6 +56,8 @@ p {
   height: 12rem;
   width: 12rem;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .profile_name_section {
@@ -65,12 +81,12 @@ p {
   font-style: italic;
 }
 
-.profile_view_about {
+.profile_view_bio {
   color: black;
 }
 
-.profile_view_about:hover,
-.profile_view_about:focus {
+.profile_view_bio:hover,
+.profile_view_bio:focus {
   cursor: pointer;
   color: black;
 }
@@ -82,4 +98,56 @@ p {
 
 .profile_abot_label {
   font-weight: 300;
+}
+
+#nav-dropdown {
+  color: white;
+}
+
+.delete-avatar-button {
+  padding: 2px;
+}
+
+.edit-profile-label {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.hidden-input-file {
+  display: none;
+}
+
+.choose_file_text {
+  padding: 0 5px;
+}
+
+.page-wrapper {
+  padding: 2rem 1rem;
+}
+
+.edit-profile-field-label {
+  font-size: 1.25rem;
+  margin-bottom: 0.2rem;
+  font-weight: 400;
+}
+
+.profile-form-group {
+  margin-bottom: 1rem;
+}
+
+.profile-compact-field {
+  max-width: 30rem;
+}
+
+.profile-button-medium {
+  height: 2.5rem;
+  line-height: 2.4rem;
+  min-width: 7rem;
+  font-size: 1.15rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.field-error {
+  color: #ff1635;
 }
