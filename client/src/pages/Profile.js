@@ -16,7 +16,28 @@ const Profile = () => {
 
     if (!user) return null
 
+    const initials = () => {
+        const words = user.name.split(' ')
+        const firstLetter = words[0].substr(0, 1)
+        const secondLetter = words[1]?.substr(0, 1)
+        return secondLetter ? firstLetter + secondLetter : firstLetter
+    }
+
+    const defaultAvatarUrl = () => (
+        `data:image/svg+xml;utf8,${defaultAvatar()}`
+    )
+
+    const defaultAvatar = () => (
+      "<svg xmlns='http://www.w3.org/2000/svg' width='224' height='224'>" +
+        "<rect width='100%' height='100%' x='0' y='0' fill='rgb(22, 123, 255, 0.25)'/>" +
+        "<text text-anchor='middle' x='112' y='160' font-family='Arial' font-size='130' fill='rgb(235, 245, 255)'>" +
+          `${initials()}` +
+        '</text>' +
+      '</svg>'
+    )
+
     const about = user.about || 'User last speachless :>'
+    const avatarUrl = user.avatarUrl || defaultAvatarUrl()
 
     const aboutTooLong = about.length > 500
     const trancatedAbout = aboutTooLong ? `${about.substr(0, 496)} ...` : about
@@ -26,7 +47,7 @@ const Profile = () => {
             <div className="d-inline-flex w-100">
                 <div className="profile_avatar_section">
                     <div className="profile_avatar_large">
-                        <img className="profile_avatar_image" alt={user.name} src={user.avatar_url} />
+                        <img className="profile_avatar_image" alt={user.name} src={avatarUrl} />
                     </div>
                 </div>
                 <div className="profile_name_section w-100">
