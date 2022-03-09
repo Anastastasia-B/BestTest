@@ -3,11 +3,17 @@ import { Context } from '../index'
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import Container from "react-bootstrap/Container"
+import NavDropdown from "react-bootstrap/NavDropdown"
 import Button from "react-bootstrap/Button"
 import {useNavigate} from "react-router-dom"
-
-import { REGISTRATION_ROUTE, TEST_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from "../utils/consts"
 import { observer } from "mobx-react-lite"
+
+import {
+    REGISTRATION_ROUTE,
+    TEST_ROUTE, LOGIN_ROUTE,
+    PROFILE_ROUTE,
+    EDIT_PROFILE_ROUTE
+} from "../utils/consts"
 
 const NavBar = observer(() => {
     const {user: currentUser} = useContext(Context)
@@ -22,7 +28,7 @@ const NavBar = observer(() => {
     }
 
     return (
-        <Navbar bg="primary" variant="dark" className="mb-4">
+        <Navbar bg="primary" variant="dark">
             <Container>
                 <Navbar.Brand href={TEST_ROUTE + '/1'}>BestTest</Navbar.Brand>
                 <Nav className="me-auto">
@@ -30,8 +36,13 @@ const NavBar = observer(() => {
                 </Nav>
                 {currentUser.isAuth ?
                     <Nav>
-                        <Nav.Link onClick={signOut} className="mx-1">Sign Out</Nav.Link>
-                        <Button href={PROFILE_ROUTE + `/${currentUser.user?.id}`}>My Profile</Button>
+                        <NavDropdown className="nav-dropdown" title="My Profile" id="nav-dropdown">
+                            <NavDropdown.Item href={PROFILE_ROUTE + `/${currentUser.user?.id}`}>View Profile</NavDropdown.Item>
+                            <NavDropdown.Item href={EDIT_PROFILE_ROUTE}>Edit Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/">Account Settings</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     :
                     <Nav>
