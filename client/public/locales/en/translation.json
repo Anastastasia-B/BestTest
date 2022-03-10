@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "accountSettings": "Account Settings",
+    "signOut": "Sign Out"
+  },
+  "auth": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "alreadyRegistered": "Already registered",
+    "notRegistered": "Not registered",
+    "signUp?": "sign up?",
+    "signIn?": "sign in?",
+    "email": "Email",
+    "password": "Password",
+    "enterEmail": "Enter email",
+    "enterPassword": "Enter password",
+    "youRegistered": "You registered. Congradulations!"
+  },
+  "profile": {
+    "bio": "Bio",
+    "bioColon": "Bio:",
+    "enterBio": "Enter a few words you want to share with users viewing your profile...",
+    "updated": "Profile updated successfully",
+    "uploadAvatar": "Upload New Picture",
+    "chooseFile": "Choose file...",
+    "removeAvatar": "Remove Profile Picture",
+    "viewMore": "View more",
+    "hide": "Hide",
+    "noBio": "No bio provided."
+  },
+  "errors": {
+    "fieldRequired": "This field is required"
+  },
+  "backendErrors": {
+    "wrongPassword": "Password is incorrect",
+    "incorrectEmailOrPassword": "Incorrect email or password",
+    "userWithEmailAlreayExists": "User with such email already exists",
+    "userWithEmailNotFound": "Could not find user with such email",
+    "uploadAvatarError": "Upload avatar error",
+    "deleteAvatarError": "Delete avatar error"
+  },
+  "shared": {
+    "editProfile": "Edit Profile",
+    "viewProfile": "View Profile",
+    "name": "Name",
+    "enterName": "Enter name",
+    "testPage": "Test Page",
+    "update": "Update"
+  }
+}

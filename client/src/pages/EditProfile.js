@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react"
 import {Button, Form} from "react-bootstrap"
 import {Formik, Field, Form as FormikForm, ErrorMessage} from 'formik'
+import { useTranslation } from 'react-i18next'
 
 import {Context} from '../index'
 import { getOneUser, uploadAvatar, deleteAvatar, editProfile } from "../http/userAPI"
@@ -9,6 +10,7 @@ import {PROFILE_ROUTE} from "../utils/consts"
 import Avatar from "../components/Avatar"
 
 const Profile = () => {
+    const {t} = useTranslation()
     const {user: currentUser} = useContext(Context)
     const [user, setUser] = useState(null)
 
@@ -29,7 +31,7 @@ const Profile = () => {
             e.target.value = ''
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(e.response.data.message)
+                alert(t(e.response.data.message))
             }
             else {
                 console.log(e)
@@ -43,7 +45,7 @@ const Profile = () => {
             setUser(data)
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(e.response.data.message)
+                alert(t(e.response.data.message))
             }
             else {
                 console.log(e)
@@ -58,10 +60,10 @@ const Profile = () => {
             const data = await editProfile({...values, id: user.id})
             setUser(data)
 
-            alert('Updated successfully') // заменить на флеш нотификацию
+            alert(t('profile.updated')) // заменить на флеш нотификацию
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(e.response.data.message)
+                alert(t(e.response.data.message))
             }
             else {
                 console.log(e)
@@ -71,22 +73,22 @@ const Profile = () => {
 
     const renderForm = ({ isSubmitting }) => (
         <FormikForm>
-            <Form.Label className="edit-profile-label mb-2">Edit Profile</Form.Label>
+            <Form.Label className="edit-profile-label mb-2">{t('shared.editProfile')}</Form.Label>
             <Form.Group className="profile-form-group profile-compact-field">
-                <Form.Label className="edit-profile-field-label">Name</Form.Label>
-                <Field className="form-control" name="name" placeholder="Enter name" />
+                <Form.Label className="edit-profile-field-label">{t('shared.name')}</Form.Label>
+                <Field className="form-control" name="name" placeholder={t('shared.enterName')} />
             </Form.Group>
             <Form.Group className="profile-form-group profile-compact-field">
-                <Form.Label className="edit-profile-field-label">Email</Form.Label>
-                <Field className="form-control" name="email" placeholder="Enter email" />
+                <Form.Label className="edit-profile-field-label">{t('auth.email')}</Form.Label>
+                <Field className="form-control" name="email" placeholder={t('auth.enterEmail')} />
                 <ErrorMessage className="field-error" name="email" component="div" />
             </Form.Group>
             <Form.Group className="profile-form-group">
-                <Form.Label className="edit-profile-field-label">Bio</Form.Label>
+                <Form.Label className="edit-profile-field-label">{t('profile.bio')}</Form.Label>
                 <Field
                     className="form-control" 
                     name="bio"
-                    placeholder="Enter a few words you want to share with users viewing your profile..."
+                    placeholder={t('profile.enterBio')}
                     as="textarea"
                     rows="5"
                     maxLength ="2000"
@@ -98,7 +100,7 @@ const Profile = () => {
                 variant="primary"
                 type="submit"
             >
-                Update
+                {t('shared.update')}
             </Button>
         </FormikForm>
     )
@@ -112,7 +114,7 @@ const Profile = () => {
                     </div>
                     <div className="d-flex justify-content-between w-100"> 
                         <Form.Group className="mt-1 d-flex flex-column">
-                            <Form.Label className="edit-profile-label">Upload New Picture</Form.Label>
+                            <Form.Label className="edit-profile-label">{t('profile.uploadAvatar')}</Form.Label>
                             <label>
                                 <div className="btn btn-primary btn-lg">
                                     <div className="choose_file_text">
@@ -123,7 +125,7 @@ const Profile = () => {
                                             onChange={changeHandler}
                                             autoComplete="off"
                                         />
-                                        Choose file...
+                                        {t('profile.chooseFile')}
                                     </div>
                                 </div>
                             </label>
@@ -133,13 +135,13 @@ const Profile = () => {
                                     className="delete-avatar-button text-start"
                                     variant="link"
                                 >
-                                    Remove Profile Picture
+                                    {t('profile.removeAvatar')}
                                 </Button>
                             )}
                         </Form.Group>
                         <div>
                             <Button className="profile-button-medium" variant="outline-primary" href={PROFILE_ROUTE + `/${user.id}`} >
-                                View Profile
+                                {t('shared.viewProfile')}
                             </Button>
                         </div>
                     </div>
@@ -151,7 +153,7 @@ const Profile = () => {
                         const errors = {}
 
                         if (!values.email)
-                            errors.email = "Email can't be null"
+                            errors.email = t('errors.fieldRequired')
 
                         return errors
                     }}

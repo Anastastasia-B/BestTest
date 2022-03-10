@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Домой",
+    "accountSettings": "Настройки аккаунта",
+    "signOut": "Выйти"
+  },
+  "auth": {
+    "signUp": "Резистрация",
+    "signIn": "Войти",
+    "alreadyRegistered": "Уже есть аккаунт",
+    "notRegistered": "Не зарегестрированы",
+    "signUp?": "к регистрации?",
+    "signIn?": "войти?",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "enterEmail": "Введите адрес электронной почты",
+    "enterPassword": "Введите пароль",
+    "youRegistered": "Вы зарегестрировались. Поздравляем!"
+  },
+  "profile": {
+    "bio": "Био",
+    "bioColon": "Био:",
+    "enterBio": "Введите пару слов, которыми вы хотите поделиться с пользователями, зашедшими на ваш профиль...",
+    "updated": "Профиль успешно обновлен",
+    "uploadAvatar": "Загрузить новый аватар",
+    "chooseFile": "Выбрать файл...",
+    "removeAvatar": "Удалить аватар",
+    "viewMore": "Больше",
+    "hide": "Меньше",
+    "noBio": "Био не предоставлено."
+  },
+  "errors": {
+    "fieldRequired": "Это поле обязательно"
+  },
+  "backendErrors": {
+    "wrongPassword": "Неверный пароль",
+    "incorrectEmailOrPassword": "Некорректный email или пароль",
+    "userWithEmailAlreayExists": "Пользователь с таким email уже сущиствует",
+    "userWithEmailNotFound": "Пользователь с данным email не найден",
+    "uploadAvatarError": "Ошибка при загрузке аватара",
+    "deleteAvatarError": "Ошибка при удалении аватара"
+  },
+  "shared": {
+    "editProfile": "Изменить профиль",
+    "viewProfile": "Мой профиль",
+    "name": "Имя",
+    "enterName": "Введите имя",
+    "testPage": "Тест",
+    "update": "Обновить"
+  }
+}
