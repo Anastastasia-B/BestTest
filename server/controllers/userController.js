@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User} = require('../models/models')
 const nodemailer = require('nodemailer')
+const fs = require('fs');
 
 const generateJWT = (id, email) => {
     return jwt.sign(
@@ -23,7 +24,13 @@ class UserConstroller {
             return next(ApiError.badRequest('Пользователь с таким email уже сущиствует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, password: hashPassword, name})
+        const guid = function randomString(i) {
+            var rnd = '';
+            while (rnd.length < i) 
+                rnd += Math.random().toString(36).substring(2);
+            return rnd.substring(0, i);
+        }(20);
+        const user = await User.create({email, password: hashPassword, name, guid})
 
         const token = generateJWT(user.id, user.email)
 
@@ -37,15 +44,14 @@ class UserConstroller {
                 },
             })
 
+            var text = fs.readFileSync("/home/lesha/Рабочий стол/Best_test/server/controllers/confirmEmail.html", "utf8")
+            text = text.replace("confirmRef", `http://localhost:5000/api/confirm/${guid}`)
+
             transporter.sendMail({
                 from: '"BestTest" <bbesttest@yandex.ru>',
                 to: user.email,
                 subject: 'Завершение регистрации',
-                html:
-                  'Спасибо за регистрацию на портале BestTest! Для завершения регистрации нажмите' +
-                  `<a href="http://localhost:3000/confirm?guid=${token}">` +
-                    'сюда' + 
-                  '</a>.',
+                html: text,
             }, function (err, info) {
                 if(err)
                   console.log(err)

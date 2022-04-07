@@ -8,6 +8,8 @@ const User = sequelize.define('user', {
     name: {type: DataTypes.STRING},
     about: {type: DataTypes.STRING},
     avatarUrl: {type: DataTypes.STRING},
+    guid: {type: DataTypes.STRING},
+    is_email_varified: {type: DataTypes.BOOLEAN},
 })
 
 const Test = sequelize.define('test', {

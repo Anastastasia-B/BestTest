@@ -5,14 +5,16 @@ const {User} = require('../models/models')
 
 class ConfirmConstroller {
     async confirm(req, res, next) {
-       console.log('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
-       let jwtDecoded = jwt.decode(req.query.guid)
-       let guid = jwtDecoded.guid;
-       let user = User.findOne({where: {guid}})
-       if (user) user.isEmailVerified = true
-
-       console.log('$$$' + user.isEmailVerified + '$$$')
-       return res.json(user.isEmailVerified)
+       const {guid} = req.params
+       let user = await User.findOne({where: {guid}})
+       res.set('Content-Type', 'text/html')
+       if (user)
+       res.end("<h2>Вы успешно подтвердили email!</h2>");
+       else
+       res.end("<h2>Что-то пошло не так...<h2>");
+       ////перенаправить на главную страницу
+       user.update({is_email_varified : true})
+       return true
     }
 }
 
