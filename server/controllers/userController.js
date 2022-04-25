@@ -19,11 +19,11 @@ class UserConstroller {
     async registration(req, res, next) {
         const {email, password, name} = req.body
         if (!email || !password) {
-            return next(ApiError.badRequest('Некорректный email или password'))
+            return next(ApiError.badRequest('backendErrors.incorrectEmailOrPassword'))
         }
         const candidate = await User.findOne({where: {email}})
         if (candidate) {
-            return next(ApiError.badRequest('Пользователь с таким email уже сущиствует'))
+            return next(ApiError.badRequest('backendErrors.userWithEmailAlreayExists'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, password: hashPassword, name})
@@ -36,11 +36,11 @@ class UserConstroller {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}})
         if (!user) {
-            return next(ApiError.internal('Пользователь с данным email не найден'))
+            return next(ApiError.internal('backendErrors.userWithEmailNotFound'))
         }
         let passwordCorrect = bcrypt.compareSync(password, user.password)
         if (!passwordCorrect) {
-            return next(ApiError.internal('Неверный пароль'))
+            return next(ApiError.internal('backendErrors.wrongPassword'))
         }
         const token = generateJWT(user.id, user.email)
         return res.json({token})
@@ -78,7 +78,7 @@ class UserConstroller {
             return res.json(user)
         } catch (e) {
             console.log(e)
-            return res.status(400).json({message: 'Upload avatar error'})
+            return res.status(400).json({message: 'backendErrors.uploadAvatarError'})
         }
     }
 
@@ -91,7 +91,7 @@ class UserConstroller {
             return res.json(user)
         } catch (e) {
             console.log(e)
-            return res.status(400).json({message: 'Delete avatar error'})
+            return res.status(400).json({message: 'backendErrors.deleteAvatarError'})
         }
     }
 

@@ -2,12 +2,14 @@ import React, {useState, useContext} from "react"
 import {Container, Form, Button} from "react-bootstrap"
 import { observer } from "mobx-react-lite"
 import {useNavigate} from "react-router-dom"
+import { useTranslation } from 'react-i18next'
 
 import {Context} from '../index'
 import { registration } from "../http/userAPI"
 import { LOGIN_ROUTE, TEST_ROUTE } from "../utils/consts"
 
 const Register = observer(() => {
+  const {t} = useTranslation()
   const {user} = useContext(Context)
   const navigate = useNavigate()
 
@@ -22,10 +24,10 @@ const Register = observer(() => {
       user.setIsAuth(true)
 
       navigate(TEST_ROUTE + '/1') // заменить на путь к главной странице после её создания
-      alert('You registered. Congradulations!')
+      alert(t('auth.youRegistered'))
     } catch (e) {
       if (e.response && e.response.data) {    
-        alert(e.response.data.message)
+        alert(t(e.response.data.message))
       }
       else {
         console.log(e)
@@ -39,40 +41,40 @@ const Register = observer(() => {
       style={{height: window.innerHeight - 54}}
     >
         <Form className="auth-form-container">
-          <h3 className="text-center">Sign Up</h3>
+          <h3 className="text-center">{t('auth.signUp')}</h3>
           <div className="form-group">
-              <label>Name</label>
+              <label>{t('shared.name')}</label>
               <Form.Control
                 type="text"
                 className="form-control"
-                placeholder="Enter name"
+                placeholder={t('shared.enterName')}
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
           </div>
           <div className="form-group">
-              <label>Email address</label>
+              <label>{t('auth.email')}</label>
               <Form.Control
                 type="email" 
                 className="form-control"
-                placeholder="Enter email"
+                placeholder={t('auth.enterEmail')}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
           </div>
           <div className="form-group">
-              <label>Password</label>
+              <label>{t('auth.password')}</label>
               <Form.Control
                 type="password"
                 className="form-control"
-                placeholder="Enter password"
+                placeholder={t('auth.enterPassword')}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
           </div>
-          <Button onClick={signUp} className="btn btn-primary btn-block my-2">Sign Up</Button>
+          <Button onClick={signUp} className="btn btn-primary btn-block my-2">{t('auth.signUp')}</Button>
           <p className="auth-addintional-section text-end">
-            Already registered <a href={LOGIN_ROUTE}>sign in?</a>
+            {t('auth.alreadyRegistered')}<a className="mx-1" href={LOGIN_ROUTE}>{t('auth.signIn?')}</a>
           </p>
         </Form>
     </Container>

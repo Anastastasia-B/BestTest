@@ -2,12 +2,14 @@ import React, {useState, useContext} from "react"
 import {Container, Form, Button} from "react-bootstrap"
 import { observer } from "mobx-react-lite"
 import {useNavigate} from "react-router-dom"
+import { useTranslation } from 'react-i18next'
 
 import {Context} from '../index'
 import { login } from "../http/userAPI"
 import { REGISTRATION_ROUTE, TEST_ROUTE } from "../utils/consts"
 
 const LogIn = observer(() => {
+  const {t} = useTranslation()
   const {user} = useContext(Context)
   const navigate = useNavigate()
 
@@ -23,7 +25,7 @@ const LogIn = observer(() => {
       navigate(TEST_ROUTE + '/1') // заменить на путь к главной странице после её создания
     } catch (e) {
       if (e.response && e.response.data) {    
-        alert(e.response.data.message)
+        alert(t(e.response.data.message))
       }
       else {
         console.log(e)
@@ -37,30 +39,30 @@ const LogIn = observer(() => {
       style={{height: window.innerHeight - 54}}
     >
       <Form className="auth-form-container login-container">
-        <h3 className="text-center"> Sign In</h3>
+        <h3 className="text-center">{t('auth.signIn')}</h3>
         <div className="form-group">
-            <label>Email address</label>
+            <label>{t('auth.email')}</label>
             <Form.Control
               type="email"
               className="form-control"
-              placeholder="Enter email"
+              placeholder={t('auth.enterEmail')}
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
         </div>
         <div className="form-group">
-            <label>Password</label>
+            <label>{t('auth.password')}</label>
             <Form.Control
               type="password"
               className="form-control"
-              placeholder="Enter password"
+              placeholder={t('auth.enterPassword')}
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
         </div>
-        <Button onClick={signIn} className="btn btn-primary btn-block my-2">Sign In</Button>
+        <Button onClick={signIn} className="btn btn-primary btn-block my-2">{t('auth.signIn')}</Button>
         <p className="auth-addintional-section text-end">
-            Not registered <a href={REGISTRATION_ROUTE}>sign up?</a>
+          {t('auth.notRegistered')}<a className="mx-1" href={REGISTRATION_ROUTE}>{t('auth.signUp?')}</a>
         </p>
       </Form>
     </Container>
