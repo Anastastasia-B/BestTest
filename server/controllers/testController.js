@@ -1,4 +1,5 @@
-const {Test} = require('../models/models')
+const {Test, User, Question} = require('../models/models')
+const Sequelize = require('sequelize')
 
 class TestConstroller {
     async create(req, res) {
@@ -10,8 +11,16 @@ class TestConstroller {
     }
 
     async getOne(req, res) {
-        const {id} = req.query
-        const test = await Test.findOne({where: {id}})
+        const {id} = req.params
+        const test = await Test.findOne(
+            {
+                where: {id},
+                include: [
+                    {model: User, as: 'user'},
+                    {model: Question, as: 'questions'},
+                ],
+            }
+        )
         res.json(test)
     }
 }

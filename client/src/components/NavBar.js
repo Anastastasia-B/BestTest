@@ -31,7 +31,7 @@ const NavBar = observer(() => {
 
     return (
         <Navbar bg="primary" variant="dark">
-            <Container>
+            <Container className="content-width">
                 <Navbar.Brand href={TEST_ROUTE + '/1'}>{'BestTest'}</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href={TEST_ROUTE + '/1'}>{t('nav.home')}</Nav.Link>
