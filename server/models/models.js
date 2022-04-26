@@ -24,7 +24,7 @@ const Question = sequelize.define('question', {
     pictureUrl: {type: DataTypes.STRING},
 })
 
-const AnswerOption = sequelize.define('answer_option', {
+const AnswerOption = sequelize.define('answerOption', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     body: {type: DataTypes.STRING},
     type: {type: DataTypes.STRING},
@@ -32,7 +32,7 @@ const AnswerOption = sequelize.define('answer_option', {
     score: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
 })
 
-const TestResult = sequelize.define('test_result', {
+const TestResult = sequelize.define('testResult', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING},
     body: {type: DataTypes.STRING},
@@ -43,7 +43,7 @@ const TestResult = sequelize.define('test_result', {
 })
 
 /** type B only (shows how many points would add an answer option to which test result) **/
-const AnswerOptionTestResult = sequelize.define('answer_option_test_result', {
+const AnswerOptionTestResult = sequelize.define('answerOptionTestResult', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     score: {type: DataTypes.INTEGER, defaultValue: 0},
 })
@@ -57,22 +57,22 @@ module.exports = {
     AnswerOptionTestResult
 }
 
-User.hasMany(Test)
+User.hasMany(Test, {onDelete: 'CASCADE'})
 Test.belongsTo(User)
 
-Test.hasMany(Question)
+Test.hasMany(Question, {onDelete: 'CASCADE'})
 Question.belongsTo(Test)
 
-Question.hasMany(AnswerOption)
+Question.hasMany(AnswerOption, {onDelete: 'CASCADE'})
 AnswerOption.belongsTo(Question)
 
-Test.hasMany(TestResult)
+Test.hasMany(TestResult, {onDelete: 'CASCADE'})
 TestResult.belongsTo(Test)
 
 /** type B only **/
-AnswerOption.hasMany(AnswerOptionTestResult)
+AnswerOption.hasMany(AnswerOptionTestResult, {onDelete: 'CASCADE'})
 AnswerOptionTestResult.belongsTo(AnswerOption)
-TestResult.hasMany(AnswerOptionTestResult)
+TestResult.hasMany(AnswerOptionTestResult, {onDelete: 'CASCADE'})
 AnswerOptionTestResult.belongsTo(TestResult)
 
 User.belongsToMany(TestResult, {

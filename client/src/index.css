@@ -162,7 +162,7 @@ p {
   width: 30rem;
   object-fit: cover;
   object-position: center;
-  border-radius: 10%;
+  border-radius: 5%;
 }
 
 .test_description {

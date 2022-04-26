@@ -1,5 +1,4 @@
-const {Test, User, Question} = require('../models/models')
-const Sequelize = require('sequelize')
+const {Test, User, Question, TestResult} = require('../models/models')
 
 class TestConstroller {
     async create(req, res) {
@@ -18,6 +17,7 @@ class TestConstroller {
                 include: [
                     {model: User, as: 'user'},
                     {model: Question, as: 'questions'},
+                    {model: TestResult, as: 'testResults'}
                 ],
             }
         )
