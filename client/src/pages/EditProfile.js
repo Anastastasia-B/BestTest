@@ -106,12 +106,10 @@ const Profile = () => {
     )
 
     return (
-        <PageContainer children={(
+        <PageContainer>
             <Fragment>
                 <div className="d-inline-flex w-100 mb-4">
-                    <div className="profile_avatar_section">
-                        <Avatar userAvatarUrl={user.avatarUrl} userName={user.name} />
-                    </div>
+                    <Avatar userAvatarUrl={user.avatarUrl} userName={user.name} />
                     <div className="d-flex justify-content-between w-100"> 
                         <Form.Group className="mt-1 d-flex flex-column">
                             <Form.Label className="edit-profile-label">{t('profile.uploadAvatar')}</Form.Label>
@@ -161,7 +159,7 @@ const Profile = () => {
                     {renderForm}
                 </Formik>
             </Fragment>
-        )}/>
+        </PageContainer>
     )
 }
 

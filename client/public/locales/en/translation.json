@@ -25,9 +25,16 @@
     "uploadAvatar": "Upload New Picture",
     "chooseFile": "Choose file...",
     "removeAvatar": "Remove Profile Picture",
-    "viewMore": "View more",
-    "hide": "Hide",
     "noBio": "No bio provided."
+  },
+  "test": {
+    "writtenBy": "Written by ",
+    "start": "Let's Start!",
+    "summary": "Summary",
+    "questionsCount": "Questions: ",
+    "rate": "Rate: ",
+    "usersPassedCount": "Users Passed: ",
+    "noDescription": "No description provided."
   },
   "errors": {
     "fieldRequired": "This field is required"
@@ -46,6 +53,8 @@
     "name": "Name",
     "enterName": "Enter name",
     "testPage": "Test Page",
-    "update": "Update"
+    "update": "Update",
+    "viewMore": "View more",
+    "hide": "Hide"
   }
 }
