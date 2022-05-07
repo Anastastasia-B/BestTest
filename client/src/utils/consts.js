@@ -1,5 +1,7 @@
 export const TEST_ROUTE = '/test'
+export const PASS_TEST_ROUTE = '/pass_test'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
 export const PROFILE_ROUTE = '/profile'
 export const EDIT_PROFILE_ROUTE = '/edit_profile'
+export const TEST_RESULT_ROUTE = '/test_result'

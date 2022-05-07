@@ -4,12 +4,16 @@ import TestPage from "./pages/TestPage"
 import Register from "./pages/Register"
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
+import TestPassingPage from "./pages/TestPassingPage"
+import TestResultPage from "./pages/TestResultPage"
 import {
     TEST_ROUTE,
+    PASS_TEST_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
     PROFILE_ROUTE,
-    EDIT_PROFILE_ROUTE
+    EDIT_PROFILE_ROUTE,
+    TEST_RESULT_ROUTE
 } from './utils/consts'
 
 export const publicRoutes = [
@@ -35,6 +39,14 @@ export const authRoutes = [
     {
         path: EDIT_PROFILE_ROUTE,
         component: <EditProfile />,
+    },
+    {
+        path: PASS_TEST_ROUTE + '/:id',
+        component: <TestPassingPage />,
+    },
+    {
+        path: TEST_RESULT_ROUTE + '/:id',
+        component: <TestResultPage />,
     }
 ]
 

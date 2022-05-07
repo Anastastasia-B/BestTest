@@ -34,7 +34,10 @@
     "questionsCount": "Questions: ",
     "rate": "Rate: ",
     "usersPassedCount": "Users Passed: ",
-    "noDescription": "No description provided."
+    "nextQuestion": "Next Question",
+    "getResult": "Get Result",
+    "yourResult": "Your result: ",
+    "tryAgain": "Try Again"
   },
   "errors": {
     "fieldRequired": "This field is required"
