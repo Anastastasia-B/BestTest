@@ -1,4 +1,4 @@
-const {Question, AnswerOption} = require('../models/models')
+const {Question, AnswerOption, TestResult} = require('../models/models')
 
 class QuestionController {
     async getOne(req, res) {
@@ -7,7 +7,14 @@ class QuestionController {
             {
                 where: {id},
                 include: [
-                    {model: AnswerOption, as: 'answerOptions'},
+                    {
+                        model: AnswerOption,
+                        as: 'answerOptions',
+                        include: [{
+                            model: TestResult,
+                            through: { score: [] }
+                        }]
+                    },
                 ],
             }
         )

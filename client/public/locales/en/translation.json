@@ -37,7 +37,9 @@
     "nextQuestion": "Next Question",
     "getResult": "Get Result",
     "yourResult": "Your result: ",
-    "tryAgain": "Try Again"
+    "tryAgain": "Try Again",
+    "question": "Question",
+    "currentQuestion": "question: "
   },
   "errors": {
     "fieldRequired": "This field is required"

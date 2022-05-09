@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useTranslation } from 'react-i18next'
 import { Button, Col, Row } from "react-bootstrap"
@@ -8,13 +8,11 @@ import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
 import testDefaultImg from '../assets/testDefaultImg.png'
 import {PROFILE_ROUTE, PASS_TEST_ROUTE} from "../utils/consts"
-import {Context} from '../index'
 
 function TestPage() {
   const {t} = useTranslation()
   const [test, setTest] = useState(null)
   const {id} = useParams()
-  const {user: currentUser} = useContext(Context)
 
   useEffect(() => {
       getOneTest(id).then(data => setTest(data))
@@ -46,9 +44,7 @@ function TestPage() {
               <p>{t('test.questionsCount') + questionsCount}</p>
               <p>{t('test.rate') + 0}</p>
               <p>{t('test.usersPassedCount') + 0}</p>
-              {test?.user?.id !== currentUser?.user?.id && (
-                <Button size="lg" className="my-3" href={PASS_TEST_ROUTE + `/${test.id}`}>{t('test.start')}</Button>
-              )}
+              <Button size="lg" className="my-3" href={PASS_TEST_ROUTE + `/${test.id}`}>{t('test.start')}</Button>
             </div>
           </div>
         </Col>
