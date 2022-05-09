@@ -46,13 +46,26 @@ const AnswerOptionTestResult = sequelize.define('answerOptionTestResult', {
     score: {type: DataTypes.INTEGER, defaultValue: 0},
 })
 
+const UserTestResult = sequelize.define('userTestResult', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    testResultId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: TestResult,
+            key: 'id'
+        }
+    }
+})
+
 module.exports = {
     User,
     Test,
     Question,
     AnswerOption,
     TestResult,
-    AnswerOptionTestResult
+    AnswerOptionTestResult,
+    UserTestResult
 }
 
 User.hasMany(Test, {onDelete: 'CASCADE'})
@@ -71,13 +84,7 @@ TestResult.belongsTo(Test)
 AnswerOption.belongsToMany(TestResult, { through: AnswerOptionTestResult })
 TestResult.belongsToMany(AnswerOption, { through: AnswerOptionTestResult })
 
-User.belongsToMany(TestResult, {
-  through: "user_test_result",
-  as: "testResults",
-  foreignKey: "user_id",
-})
-TestResult.belongsToMany(User, {
-  through: "user_test_result",
-  as: "users",
-  foreignKey: "test_result_id",
-})
+User.belongsToMany(Test, { through: UserTestResult, as: "testsPassed" })
+Test.belongsToMany(User, { through: UserTestResult, as: "usersPassed" })
+TestResult.hasMany(UserTestResult)
+UserTestResult.belongsTo(TestResult, {foreignKey: "testResultId"})

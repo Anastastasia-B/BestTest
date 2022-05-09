@@ -88,7 +88,6 @@ p {
 .view_more {
   color: black;
   font-weight: 250;
-  font-style: italic;
 }
 
 .view_more:hover,
@@ -197,7 +196,6 @@ p {
 
 .test_summary_title {
   font-weight: 400;
-  margin-bottom: 2rem;
 }
 
 .current_question {
@@ -210,5 +208,20 @@ p {
 
 .result_heading_sm {
   font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.result_heading_md {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.result_text_sm {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.result_text_xs {
+  font-size: 1rem;
   font-weight: 400;
 }

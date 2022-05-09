@@ -4,7 +4,7 @@ const fs = require('fs')
 const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User} = require('../models/models')
+const {User, Test} = require('../models/models')
 
 const generateJWT = (id, email) => {
     return jwt.sign(
@@ -52,7 +52,12 @@ class UserConstroller {
 
     async getOne(req, res) {
         const {id} = req.params
-        const user = await User.findOne({where: {id}})
+        const user = await User.findOne({
+            where: {id},
+            include: [
+                {model: Test, as: 'testsPassed'}
+            ]
+        })
         return res.json(user)
     }
 

@@ -25,7 +25,8 @@
     "uploadAvatar": "Upload New Picture",
     "chooseFile": "Choose file...",
     "removeAvatar": "Remove Profile Picture",
-    "noBio": "No bio provided."
+    "noBio": "No bio provided.",
+    "testsPassed": "Tests passed: "
   },
   "test": {
     "writtenBy": "Written by ",
@@ -37,12 +38,17 @@
     "nextQuestion": "Next Question",
     "getResult": "Get Result",
     "yourResult": "Your result: ",
+    "result": "Result: ",
     "tryAgain": "Try Again",
     "question": "Question",
-    "currentQuestion": "question: "
+    "currentQuestion": "question: ",
+    "alreadyPassed": "(you already taken this test)",
+    "goToTest": "To Test Page",
+    "viewResult": "View Result"
   },
   "errors": {
-    "fieldRequired": "This field is required"
+    "fieldRequired": "This field is required",
+    "needToSignIn": "You need to sign in to continue"
   },
   "backendErrors": {
     "wrongPassword": "Password is incorrect",
@@ -50,7 +56,8 @@
     "userWithEmailAlreayExists": "User with such email already exists",
     "userWithEmailNotFound": "Could not find user with such email",
     "uploadAvatarError": "Upload avatar error",
-    "deleteAvatarError": "Delete avatar error"
+    "deleteAvatarError": "Delete avatar error",
+    "finishTestError": "Error while finishing test"
   },
   "shared": {
     "editProfile": "Edit Profile",
