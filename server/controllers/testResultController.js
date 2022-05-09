@@ -3,7 +3,7 @@ const {TestResult, Test} = require('../models/models')
 class TestResultController {
     async getOne(req, res) {
         const {id} = req.params
-        const question = await TestResult.findOne(
+        const testResult = await TestResult.findOne(
             {
                 where: {id},
                 include: [
@@ -11,7 +11,7 @@ class TestResultController {
                 ],
             }
         )
-        res.json(question)
+        res.json(testResult)
     }
 }
 

@@ -199,3 +199,16 @@ p {
   font-weight: 400;
   margin-bottom: 2rem;
 }
+
+.current_question {
+  font-weight: 300;
+}
+
+.answer_field {
+  font-size: 1.2rem;
+}
+
+.result_heading_sm {
+  font-size: 1.2rem;
+  font-weight: 400;
+}

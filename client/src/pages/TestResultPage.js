@@ -19,10 +19,14 @@ function TestPage() {
 
   if (!result) return null
 
+  const title = result.test.type === 'A'
+    ? result.title + ` (${result.fromScore}-${result.toScore})`
+    : result.title
+
   return (
     <PageContainer>
-      <span>{t('test.yourResult') + result.fromScore + '-' + result.toScore}</span>
-      <h2>{result.title}</h2>
+      <span className="result_heading_sm">{t('test.yourResult')}</span>
+      <h2>{title}</h2>
       {result.pictureUrl && (
         <img className="test_front_image" alt={result.title} src={process.env.REACT_APP_API_URL + result.pictureUrl} />
       )}

@@ -15,7 +15,7 @@ const Test = sequelize.define('test', {
     title: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING(2000)},
     frontPictureUrl: {type: DataTypes.STRING},
-    type: {type: DataTypes.STRING},
+    type: {type: DataTypes.STRING, defaultValue: 'A'},
 })
 
 const Question = sequelize.define('question', {
@@ -27,7 +27,6 @@ const Question = sequelize.define('question', {
 const AnswerOption = sequelize.define('answerOption', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     body: {type: DataTypes.STRING},
-    type: {type: DataTypes.STRING},
     correct: {type: DataTypes.BOOLEAN, defaultValue: false}, // type A field
     score: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
 })
@@ -37,12 +36,11 @@ const TestResult = sequelize.define('testResult', {
     title: {type: DataTypes.STRING},
     body: {type: DataTypes.STRING},
     pictureUrl: {type: DataTypes.STRING},
-    type: {type: DataTypes.STRING},
     fromScore: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
     toScore: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
 })
 
-/** type B only (shows how many points would add an answer option to which test result) **/
+/** type B only **/
 const AnswerOptionTestResult = sequelize.define('answerOptionTestResult', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     score: {type: DataTypes.INTEGER, defaultValue: 0},
@@ -70,10 +68,8 @@ Test.hasMany(TestResult, {onDelete: 'CASCADE'})
 TestResult.belongsTo(Test)
 
 /** type B only **/
-AnswerOption.hasMany(AnswerOptionTestResult, {onDelete: 'CASCADE'})
-AnswerOptionTestResult.belongsTo(AnswerOption)
-TestResult.hasMany(AnswerOptionTestResult, {onDelete: 'CASCADE'})
-AnswerOptionTestResult.belongsTo(TestResult)
+AnswerOption.belongsToMany(TestResult, { through: AnswerOptionTestResult })
+TestResult.belongsToMany(AnswerOption, { through: AnswerOptionTestResult })
 
 User.belongsToMany(TestResult, {
   through: "user_test_result",
