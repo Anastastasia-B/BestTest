@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import {Context} from '../index'
 import { registration } from "../http/userAPI"
-import { LOGIN_ROUTE, TEST_ROUTE } from "../utils/consts"
+import { LOGIN_ROUTE, MAIN_PAGE_ROUTE } from "../utils/consts"
 
 const Register = observer(() => {
   const {t} = useTranslation()
@@ -23,7 +23,7 @@ const Register = observer(() => {
       user.setUser(data)
       user.setIsAuth(true)
 
-      navigate(TEST_ROUTE + '/1') // заменить на путь к главной странице после её создания
+      navigate(MAIN_PAGE_ROUTE)
       alert(t('auth.youRegistered'))
     } catch (e) {
       if (e.response && e.response.data) {    

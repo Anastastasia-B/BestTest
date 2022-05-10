@@ -6,6 +6,7 @@ import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
 import TestPassingPage from "./pages/TestPassingPage"
 import TestResultPage from "./pages/TestResultPage"
+import MainPage from "./pages/MainPage"
 import {
     TEST_ROUTE,
     PASS_TEST_ROUTE,
@@ -13,7 +14,8 @@ import {
     REGISTRATION_ROUTE,
     PROFILE_ROUTE,
     EDIT_PROFILE_ROUTE,
-    TEST_RESULT_ROUTE
+    TEST_RESULT_ROUTE,
+    MAIN_PAGE_ROUTE
 } from './utils/consts'
 
 export const publicRoutes = [
@@ -28,6 +30,10 @@ export const publicRoutes = [
     {
         path: REGISTRATION_ROUTE,
         component: <Register />,
+    },
+    {
+        path: MAIN_PAGE_ROUTE,
+        component: <MainPage />,
     }
 ]
 
@@ -51,6 +57,6 @@ export const authRoutes = [
 ]
 
 export const defaultRoute = {
-    path: TEST_ROUTE + '/:id',
-    component: <TestPage />,
+    path: MAIN_PAGE_ROUTE,
+    component: <MainPage />,
 }
