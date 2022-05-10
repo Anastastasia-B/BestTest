@@ -44,7 +44,10 @@
     "currentQuestion": "question: ",
     "alreadyPassed": "(you already taken this test)",
     "goToTest": "To Test Page",
-    "viewResult": "View Result"
+    "viewResult": "View Result",
+    "enjoyedTest": "Did you enjoy this test?",
+    "rateIt": "Rate It!",
+    "wantToChangeRate": "Want to change your rate?"
   },
   "mainPage": {
     "viewTest": "View Test",

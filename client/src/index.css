@@ -236,3 +236,65 @@ p {
 .main_page_test_container {
   padding: 0.25rem;
 }
+
+.rating_group {
+  position: relative;
+  width: 10rem;
+  height: 2rem;
+  background-image: url(assets/starOff.svg);
+  background-size: 2rem auto;
+  background-repeat: repeat-x;
+}
+
+.rating_star {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  margin: 0;
+  background-repeat: repeat-x;
+  font-size: inherit;
+}
+
+.rating_star:checked,
+.rating_star:hover {
+  background-image: url(assets/starOn.svg);
+  background-size: 2rem auto;
+}
+
+.rating_star:hover ~ .rating_star {
+  background-image: url(assets/starOff.svg);
+  background-size: 2rem auto;
+}
+
+.rating_star:nth-of-type(1) {
+  width: 2rem;
+  z-index: 5;
+}
+
+.rating_star:nth-of-type(2) {
+  width: 4rem;
+  z-index: 4;
+}
+
+.rating_star:nth-of-type(3) {
+  width: 6rem;
+  z-index: 3;
+}
+
+.rating_star:nth-of-type(4) {
+  width: 8rem;
+  z-index: 2;
+}
+
+.rating_star:nth-of-type(5) {
+  width: 10rem;
+  z-index: 1;
+}
+
+.rate_test_text {
+  font-size: 1.25rem;
+}

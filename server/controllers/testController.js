@@ -1,5 +1,4 @@
 const ApiError = require('../error/ApiError')
-const sequelize = require('../db')
 const {Test, User, Question, TestResult, UserTestResult} = require('../models/models')
 
 class TestConstroller {
