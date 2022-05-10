@@ -1,5 +1,4 @@
 import React, {useContext} from "react"
-import { Context } from '../index'
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import Container from "react-bootstrap/Container"
@@ -8,6 +7,8 @@ import Button from "react-bootstrap/Button"
 import {useNavigate} from "react-router-dom"
 import { observer } from "mobx-react-lite"
 import { useTranslation } from 'react-i18next'
+
+import { Context } from '../index'
 
 import {
     REGISTRATION_ROUTE,

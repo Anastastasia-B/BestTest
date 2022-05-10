@@ -6,6 +6,7 @@ import { getOneUser } from "../http/userAPI"
 import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
 import Avatar from "../components/Avatar"
+import {TEST_ROUTE} from "../utils/consts"
 
 const Profile = () => {
     const {t} = useTranslation()
@@ -42,6 +43,13 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="profile_content">
+                    <span>{t('profile.testsPassed')}</span>
+                    {user.testsPassed.map(test => (
+                        <Fragment key={test.id}>
+                            <a href={TEST_ROUTE + '/' + test.id}>{test.title}</a>
+                            { <span>{' '}</span>}
+                        </Fragment>
+                    ))}
                     {/* Место для тестов созданных пользователем */}
                 </div>
             </Fragment>

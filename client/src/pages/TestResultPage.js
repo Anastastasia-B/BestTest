@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useTranslation } from 'react-i18next'
 import { Button } from "react-bootstrap"
 
 import { getOneTestResult } from "../http/testResultAPI"
 import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
-import {PASS_TEST_ROUTE} from "../utils/consts"
+import {PASS_TEST_ROUTE, TEST_ROUTE} from "../utils/consts"
 
 function TestPage() {
+  const navigate = useNavigate()
   const {t} = useTranslation()
   const [result, setResult] = useState(null)
   const {id} = useParams()
 
   useEffect(() => {
-    getOneTestResult(id).then(data => setResult(data))
+    try {
+      getOneTestResult(id).then(data => setResult(data))
+    } catch (e) {
+      console.log(e)
+
+      navigate(TEST_ROUTE + '/1') // TODO: заменить на путь к главной странице после её создания
+    }
   }, [id])
 
   if (!result) return null
@@ -35,7 +42,10 @@ function TestPage() {
           <ExpandableParagraph text={result.body} maxLenght={500}></ExpandableParagraph>
         </div>
       )}
-      <Button size="lg" className="my-3" href={PASS_TEST_ROUTE + `/${result.test.id}`}>{t('test.tryAgain')}</Button>
+      <div className="my-3 d-flex align-items-end">
+        <Button size="lg" href={PASS_TEST_ROUTE + `/${result.test.id}`}>{t('test.tryAgain')}</Button>
+        <a className="mx-4 mb-1 h5" href={`${TEST_ROUTE}/${result.test.id}`}>{t('test.goToTest')}</a>
+      </div>
     </PageContainer>
   )
 }
