@@ -1,4 +1,5 @@
 const ApiError = require('../error/ApiError')
+const sequelize = require('../db')
 const {Test, User, Question, TestResult, UserTestResult} = require('../models/models')
 
 class TestConstroller {
@@ -7,7 +8,23 @@ class TestConstroller {
     }
 
     async getAll(req, res) {
-        
+        const sortBy = (sortMethod) => {
+            switch (sortMethod) {
+                case 'DATE':
+                    return ['createdAt', 'DESC']
+                case 'POPULARITY':
+                    return ['usersPassedCount', 'DESC']
+                case 'RATING':
+                default:
+                    return ['id', 'DESC']
+            }
+        }
+
+        const tests = await Test.findAll({
+            order: [sortBy(req.params.sortMethod)]
+        })
+
+        res.json(tests)
     }
 
     async getOne(req, res) {
@@ -18,8 +35,7 @@ class TestConstroller {
                 include: [
                     {model: User, as: 'user'},
                     {model: Question, as: 'questions'},
-                    {model: TestResult, as: 'testResults'},
-                    {model: User, as: 'usersPassed'}
+                    {model: TestResult, as: 'testResults'}
                 ],
             }
         )

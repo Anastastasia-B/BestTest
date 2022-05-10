@@ -23,7 +23,7 @@ function TestPage() {
 
   if (!test) return null
 
-  const avatarUrl = test.frontPictureUrl
+  const testImage = test.frontPictureUrl
     ? process.env.REACT_APP_API_URL + test.frontPictureUrl
     : testDefaultImg
 
@@ -77,7 +77,7 @@ function TestPage() {
             <span>{t('test.writtenBy')}</span>
             <a href={PROFILE_ROUTE + `/${test?.user?.id}`}>{test?.user?.name}</a>
           </div>
-          <img className="test_front_image" alt={test.title} src={avatarUrl} />
+          <img className="test_front_image" alt={test.title} src={testImage} />
         </Col>
         <Col>
           <div className="test_summary_container">
@@ -88,7 +88,7 @@ function TestPage() {
             <div className="test_summary my-auto">
               <p>{t('test.questionsCount') + questionsCount}</p>
               <p>{t('test.rate') + 0}</p>
-              <p>{t('test.usersPassedCount') + test.usersPassed.length}</p>
+              <p>{t('test.usersPassedCount') + test.usersPassedCount}</p>
               {alreadyPassed
                 ? renderUserResultSection()
                 : <Button size="lg" className="my-3" onClick={passTest}>{t('test.start')}</Button>}

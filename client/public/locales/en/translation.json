@@ -46,6 +46,15 @@
     "goToTest": "To Test Page",
     "viewResult": "View Result"
   },
+  "mainPage": {
+    "viewTest": "View Test",
+    "sortBy": {
+      "heading": "Sort By: ",
+      "date": "Newest",
+      "rating": "User Rating",
+      "popularity": "Popularity"
+    }
+  },
   "errors": {
     "fieldRequired": "This field is required",
     "needToSignIn": "You need to sign in to continue"

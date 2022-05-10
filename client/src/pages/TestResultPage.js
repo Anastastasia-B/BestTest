@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap"
 import { getOneTestResult } from "../http/testResultAPI"
 import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
-import {PASS_TEST_ROUTE, TEST_ROUTE} from "../utils/consts"
+import {PASS_TEST_ROUTE, TEST_ROUTE, MAIN_PAGE_ROUTE} from "../utils/consts"
 
 function TestPage() {
   const navigate = useNavigate()
@@ -20,7 +20,7 @@ function TestPage() {
     } catch (e) {
       console.log(e)
 
-      navigate(TEST_ROUTE + '/1') // TODO: заменить на путь к главной странице после её создания
+      navigate(MAIN_PAGE_ROUTE)
     }
   }, [id])
 

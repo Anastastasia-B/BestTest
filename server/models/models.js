@@ -16,6 +16,7 @@ const Test = sequelize.define('test', {
     description: {type: DataTypes.STRING(2000)},
     frontPictureUrl: {type: DataTypes.STRING},
     type: {type: DataTypes.STRING, defaultValue: 'A'},
+    usersPassedCount: {type: DataTypes.INTEGER, defaultValue: 0}
 })
 
 const Question = sequelize.define('question', {
@@ -88,3 +89,15 @@ User.belongsToMany(Test, { through: UserTestResult, as: "testsPassed" })
 Test.belongsToMany(User, { through: UserTestResult, as: "usersPassed" })
 TestResult.hasMany(UserTestResult)
 UserTestResult.belongsTo(TestResult, {foreignKey: "testResultId"})
+
+UserTestResult.afterCreate(async(userTestResult) => {
+    const test = await Test.findByPk(userTestResult.testId)
+
+    await test.update({ usersPassedCount: test.usersPassedCount + 1 })
+})
+
+UserTestResult.afterDestroy(async(userTestResult) => {
+    const test = await Test.findByPk(userTestResult.testId)
+
+    await test.update({ usersPassedCount: test.usersPassedCount - 1 })
+})

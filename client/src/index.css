@@ -164,6 +164,13 @@ p {
   border-radius: 5%;
 }
 
+.test_front_image_sm {
+  width: 15rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5%;
+}
+
 .test_description {
   margin-top: 1rem;
   font-size: 1.25rem;
@@ -224,4 +231,8 @@ p {
 .result_text_xs {
   font-size: 1rem;
   font-weight: 400;
+}
+
+.main_page_test_container {
+  padding: 0.25rem;
 }

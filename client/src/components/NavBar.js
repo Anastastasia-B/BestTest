@@ -12,7 +12,8 @@ import { Context } from '../index'
 
 import {
     REGISTRATION_ROUTE,
-    TEST_ROUTE, LOGIN_ROUTE,
+    MAIN_PAGE_ROUTE,
+    LOGIN_ROUTE,
     PROFILE_ROUTE,
     EDIT_PROFILE_ROUTE
 } from "../utils/consts"
@@ -33,9 +34,9 @@ const NavBar = observer(() => {
     return (
         <Navbar bg="primary" variant="dark">
             <Container className="content-width">
-                <Navbar.Brand href={TEST_ROUTE + '/1'}>{'BestTest'}</Navbar.Brand>
+                <Navbar.Brand href={MAIN_PAGE_ROUTE}>{'BestTest'}</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href={TEST_ROUTE + '/1'}>{t('nav.home')}</Nav.Link>
+                    <Nav.Link href={MAIN_PAGE_ROUTE}>{t('nav.home')}</Nav.Link>
                 </Nav>
                 {currentUser.isAuth ?
                     <Nav>
