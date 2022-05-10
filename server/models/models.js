@@ -16,7 +16,8 @@ const Test = sequelize.define('test', {
     description: {type: DataTypes.STRING(2000)},
     frontPictureUrl: {type: DataTypes.STRING},
     type: {type: DataTypes.STRING, defaultValue: 'A'},
-    usersPassedCount: {type: DataTypes.INTEGER, defaultValue: 0}
+    usersPassedCount: {type: DataTypes.INTEGER, defaultValue: 0},
+    averageRating: {type: DataTypes.FLOAT(2, 1), defaultValue: 0},
 })
 
 const Question = sequelize.define('question', {
@@ -111,4 +112,32 @@ UserTestResult.afterDestroy(async(userTestResult) => {
     const test = await Test.findByPk(userTestResult.testId)
 
     await test.update({ usersPassedCount: test.usersPassedCount - 1 })
+})
+
+Rate.afterCreate(async(rate) => {
+    const test = await Test.findByPk(rate.testId, {include: [{model: Rate, as: 'rates'}]})
+
+    const ratesCount = test.rates.length
+    let ratesSum = 0
+
+    for (let i = 0; i < ratesCount; i++) {
+        ratesSum += test.rates[i].value;
+    }
+    const averageRating = (ratesSum + rate.value) / (ratesCount + 1)
+
+    await test.update({ averageRating: averageRating.toFixed(1) })
+})
+
+Rate.afterUpdate(async(rate) => {
+    const test = await Test.findByPk(rate.testId, {include: [{model: Rate, as: 'rates'}]})
+
+    const ratesCount = test.rates.length
+    let ratesSum = 0
+
+    for (let i = 0; i < ratesCount; i++) {
+        ratesSum += test.rates[i].value;
+    }
+    const averageRating = ratesSum / ratesCount
+
+    await test.update({ averageRating: averageRating.toFixed(1) })
 })
