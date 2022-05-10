@@ -298,3 +298,9 @@ p {
 .rate_test_text {
   font-size: 1.25rem;
 }
+
+.star_average_rating {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+}

@@ -56,7 +56,6 @@ function TestPage() {
             </Fragment>
           )
         }
-        
         <fieldset>
           <div className="rating_group">
             {[1, 2, 3, 4, 5].map((value) => (
@@ -87,7 +86,7 @@ function TestPage() {
           )}
           {result.body && (
             <div className="test_description">
-              <ExpandableParagraph text={result.body} maxLenght={300}></ExpandableParagraph>
+              <ExpandableParagraph text={result.body} maxLenght={500}></ExpandableParagraph>
             </div>
           )}
           <div className="my-3 d-flex align-items-end">

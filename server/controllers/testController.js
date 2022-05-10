@@ -14,6 +14,7 @@ class TestConstroller {
                 case 'POPULARITY':
                     return ['usersPassedCount', 'DESC']
                 case 'RATING':
+                    return ['averageRating', 'DESC']
                 default:
                     return ['id', 'DESC']
             }

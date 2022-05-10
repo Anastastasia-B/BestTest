@@ -47,7 +47,8 @@
     "viewResult": "View Result",
     "enjoyedTest": "Did you enjoy this test?",
     "rateIt": "Rate It!",
-    "wantToChangeRate": "Want to change your rate?"
+    "wantToChangeRate": "Want to change your rate?",
+    "notRated": "not rated yet"
   },
   "mainPage": {
     "viewTest": "View Test",

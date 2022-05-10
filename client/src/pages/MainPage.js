@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react"
 import { useTranslation } from 'react-i18next'
+import { Button, Dropdown } from "react-bootstrap"
 
 import { getTests } from "../http/testAPI"
 import PageContainer from '../components/PageContainer'
 import {TEST_ROUTE} from "../utils/consts"
-import { Button, Dropdown } from "react-bootstrap"
+import AverageRating from "../components/AverageRating"
 
 const Profile = () => {
     const {t} = useTranslation()
@@ -35,7 +36,7 @@ const Profile = () => {
                             />
                         )}
                         <div>
-                            <p>{t('test.rate') + 0}</p>
+                            <AverageRating rating={test.averageRating} />
                             <p>{t('test.usersPassedCount') + test.usersPassedCount}</p>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
 import testDefaultImg from '../assets/testDefaultImg.png'
 import {PROFILE_ROUTE, PASS_TEST_ROUTE, TEST_RESULT_ROUTE, LOGIN_ROUTE} from "../utils/consts"
+import AverageRating from "../components/AverageRating"
 
 function TestPage() {
   const {t} = useTranslation()
@@ -87,7 +88,7 @@ function TestPage() {
             </div>
             <div className="test_summary my-auto">
               <p>{t('test.questionsCount') + questionsCount}</p>
-              <p>{t('test.rate') + 0}</p>
+              <AverageRating rating={test.averageRating} />
               <p>{t('test.usersPassedCount') + test.usersPassedCount}</p>
               {alreadyPassed
                 ? renderUserResultSection()
