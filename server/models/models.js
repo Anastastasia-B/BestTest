@@ -59,6 +59,11 @@ const UserTestResult = sequelize.define('userTestResult', {
     }
 })
 
+const Rate = sequelize.define('rate', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    value: {type: DataTypes.INTEGER}
+})
+
 module.exports = {
     User,
     Test,
@@ -66,7 +71,8 @@ module.exports = {
     AnswerOption,
     TestResult,
     AnswerOptionTestResult,
-    UserTestResult
+    UserTestResult,
+    Rate
 }
 
 User.hasMany(Test, {onDelete: 'CASCADE'})
@@ -89,6 +95,11 @@ User.belongsToMany(Test, { through: UserTestResult, as: "testsPassed" })
 Test.belongsToMany(User, { through: UserTestResult, as: "usersPassed" })
 TestResult.hasMany(UserTestResult)
 UserTestResult.belongsTo(TestResult, {foreignKey: "testResultId"})
+
+User.hasMany(Rate, {onDelete: 'CASCADE'})
+Rate.belongsTo(User)
+Test.hasMany(Rate, {onDelete: 'CASCADE'})
+Rate.belongsTo(Test)
 
 UserTestResult.afterCreate(async(userTestResult) => {
     const test = await Test.findByPk(userTestResult.testId)
