@@ -14,3 +14,8 @@ export const getTests = async (sortMethod) => {
     const {data} = await $host.get('api/test/index/' + sortMethod)
     return data
 }
+
+export const createTest = async (formData) => {
+    const {data} = await $authHost.post('api/test/create', formData)
+    return data
+}

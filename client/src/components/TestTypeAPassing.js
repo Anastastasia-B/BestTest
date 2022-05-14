@@ -25,7 +25,8 @@ function TestTypeAPassing({test}) {
     if (currentQuestionIndex < test.questions.length) {
       getOneQuestion(test.questions[currentQuestionIndex].id).then(data => setQuestion(data))
     } else {
-      const result = getResult(totalScore)
+      const friendlyTotalScore = totalScore > 0 ? totalScore : 1
+      const result = getResult(friendlyTotalScore)
 
       finishTest({testId: test.id, testResultId: result.id, userId: currentUser.user.id}).then((data) => {
         navigate(TEST_RESULT_ROUTE + '/' + data.testResultId)

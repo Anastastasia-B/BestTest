@@ -15,7 +15,8 @@ import {
     MAIN_PAGE_ROUTE,
     LOGIN_ROUTE,
     PROFILE_ROUTE,
-    EDIT_PROFILE_ROUTE
+    EDIT_PROFILE_ROUTE,
+    CREATE_TEST_ROUTE,
 } from "../utils/consts"
 
 const NavBar = observer(() => {
@@ -37,6 +38,7 @@ const NavBar = observer(() => {
                 <Navbar.Brand href={MAIN_PAGE_ROUTE}>{'BestTest'}</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href={MAIN_PAGE_ROUTE}>{t('nav.home')}</Nav.Link>
+                    <Nav.Link href={CREATE_TEST_ROUTE}>{t('nav.createTest')}</Nav.Link>
                 </Nav>
                 {currentUser.isAuth ?
                     <Nav>
