@@ -43,6 +43,15 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="profile_content">
+                    <div className="my-3">
+                        <span>{t('profile.testsCreated')}</span>
+                        {user.createdTests.map(test => (
+                            <Fragment key={test.id}>
+                                <a href={TEST_ROUTE + '/' + test.id}>{test.title}</a>
+                                { <span>{' '}</span>}
+                            </Fragment>
+                        ))}
+                    </div>
                     <span>{t('profile.testsPassed')}</span>
                     {user.testsPassed.map(test => (
                         <Fragment key={test.id}>
@@ -50,7 +59,6 @@ const Profile = () => {
                             { <span>{' '}</span>}
                         </Fragment>
                     ))}
-                    {/* Место для тестов созданных пользователем */}
                 </div>
             </Fragment>
         </PageContainer>

@@ -27,7 +27,8 @@
     "chooseFile": "Choose file...",
     "removeAvatar": "Remove Profile Picture",
     "noBio": "No bio provided.",
-    "testsPassed": "Tests passed: "
+    "testsPassed": "Tests passed: ",
+    "testsCreated": "Created Tests: "
   },
   "test": {
     "writtenBy": "Written by ",

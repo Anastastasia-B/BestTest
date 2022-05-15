@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useTranslation } from 'react-i18next'
 import { Button, Col, Row } from "react-bootstrap"
+import moment from 'moment'
 
 import {Context} from '../index'
 import { getOneTest } from "../http/testAPI"
@@ -74,8 +75,11 @@ function TestPage() {
             <span>{t('test.writtenBy')}</span>
             <a href={PROFILE_ROUTE + `/${test?.user?.id}`}>{test?.user?.name}</a>
           </div>
+          <div className="my-0 test_author">
+            <span>{moment(test.createdAt).fromNow()}</span>
+          </div>
           {test.frontPictureUrl &&
-            <img className="test_front_image" alt={test.title} src={process.env.REACT_APP_API_URL + test.frontPictureUrl} />
+            <img className="test_front_image mt-2" alt={test.title} src={process.env.REACT_APP_API_URL + test.frontPictureUrl} />
           }
         </Col>
         <Col>

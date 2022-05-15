@@ -76,7 +76,7 @@ module.exports = {
     Rate
 }
 
-User.hasMany(Test, {onDelete: 'CASCADE'})
+User.hasMany(Test, {onDelete: 'CASCADE', as: 'createdTests'})
 Test.belongsTo(User)
 
 Test.hasMany(Question, {onDelete: 'CASCADE'})
