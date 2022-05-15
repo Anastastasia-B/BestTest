@@ -2,6 +2,7 @@ import React, {Fragment} from "react"
 import { useTranslation } from 'react-i18next'
 import { Col, Row, Button } from "react-bootstrap"
 import {Formik, Field, Form as FormikForm} from 'formik'
+import ReactMarkdown from 'react-markdown'
 
 function TestPassingUI({
     question,
@@ -18,9 +19,9 @@ function TestPassingUI({
         <Col>
           <div className="mb-2">
             <h3 className="mb-0">{question.body}</h3>
-            <span className="px-1 current_question">
+            <ReactMarkdown className="px-1 current_question">
               {t('test.currentQuestion') + `${currentQuestionIndex} / ${questionsCount}`}
-            </span>
+            </ReactMarkdown>
           </div>
           {question.pictureUrl && (
             <img
@@ -38,14 +39,14 @@ function TestPassingUI({
         <FormikForm>
             {question.answerOptions.map((answer) => (
                 <div key={answer.id} className="answer_field">
-                    <label>
+                    <label className=" d-flex flex-row align-items-center">
                         <Field
                             className="mx-2"
                             name='answer'
                             type="radio"
                             value={`${answer.id}`}
                         />
-                        {answer.body}
+                        <ReactMarkdown>{answer.body}</ReactMarkdown>
                     </label>
                 </div>
             ))}
