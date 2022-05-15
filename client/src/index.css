@@ -304,3 +304,25 @@ p {
   height: 1.5rem;
   margin-bottom: 0.25rem;
 }
+
+.flash_container {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  z-index: 20;
+  min-width: 40rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.flash_info {
+  background-color: #cce2ff;
+  border: solid 1px #1d7fff;
+  color: #1d7fff;
+}
+
+.flash_danger {
+  background-color: #ffcccc;
+  border: solid 1px #ff2f2f;
+  color: #ff2f2f;
+}

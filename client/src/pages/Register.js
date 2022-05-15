@@ -7,10 +7,11 @@ import { useTranslation } from 'react-i18next'
 import {Context} from '../index'
 import { registration } from "../http/userAPI"
 import { LOGIN_ROUTE, MAIN_PAGE_ROUTE } from "../utils/consts"
+import flash from "../utils/flash"
 
 const Register = observer(() => {
   const {t} = useTranslation()
-  const {user} = useContext(Context)
+  const {user, notification: notificationContext} = useContext(Context)
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
@@ -24,10 +25,10 @@ const Register = observer(() => {
       user.setIsAuth(true)
 
       navigate(MAIN_PAGE_ROUTE)
-      alert(t('auth.youRegistered'))
+      flash.notice(t('auth.youRegistered'), notificationContext)
     } catch (e) {
       if (e.response && e.response.data) {    
-        alert(t(e.response.data.message))
+        flash.danger(t(e.response.data.message), notificationContext)
       }
       else {
         console.log(e)

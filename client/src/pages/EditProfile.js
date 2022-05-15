@@ -8,10 +8,11 @@ import { getOneUser, uploadAvatar, deleteAvatar, editProfile } from "../http/use
 import PageContainer from '../components/PageContainer'
 import {PROFILE_ROUTE} from "../utils/consts"
 import Avatar from "../components/Avatar"
+import flash from "../utils/flash"
 
 const Profile = () => {
     const {t} = useTranslation()
-    const {user: currentUser} = useContext(Context)
+    const {user: currentUser, notification: notificationContext} = useContext(Context)
     const [user, setUser] = useState(null)
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const Profile = () => {
             e.target.value = ''
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(t(e.response.data.message))
+                flash.danger(t(e.response.data.message), notificationContext)
             }
             else {
                 console.log(e)
@@ -45,7 +46,7 @@ const Profile = () => {
             setUser(data)
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(t(e.response.data.message))
+                flash.danger(t(e.response.data.message), notificationContext)
             }
             else {
                 console.log(e)
@@ -60,10 +61,10 @@ const Profile = () => {
             const data = await editProfile({...values, id: user.id})
             setUser(data)
 
-            alert(t('profile.updated')) // заменить на флеш нотификацию
+            flash.notice(t('profile.updated'), notificationContext)
         } catch (e) {
             if (e.response && e.response.data) {    
-                alert(t(e.response.data.message))
+                flash.danger(t(e.response.data.message), notificationContext)
             }
             else {
                 console.log(e)
