@@ -7,7 +7,6 @@ import {Context} from '../index'
 import { getOneTest } from "../http/testAPI"
 import PageContainer from '../components/PageContainer'
 import ExpandableParagraph from '../components/ExpandableParagraph'
-import testDefaultImg from '../assets/testDefaultImg.png'
 import {PROFILE_ROUTE, PASS_TEST_ROUTE, TEST_RESULT_ROUTE, LOGIN_ROUTE} from "../utils/consts"
 import AverageRating from "../components/AverageRating"
 import flash from "../utils/flash"
@@ -24,10 +23,6 @@ function TestPage() {
   }, [id])
 
   if (!test) return null
-
-  const testImage = test.frontPictureUrl
-    ? process.env.REACT_APP_API_URL + test.frontPictureUrl
-    : testDefaultImg
 
   const questionsCount = test.questions.length
   const alreadyPassed = !!test.userResult
@@ -79,7 +74,9 @@ function TestPage() {
             <span>{t('test.writtenBy')}</span>
             <a href={PROFILE_ROUTE + `/${test?.user?.id}`}>{test?.user?.name}</a>
           </div>
-          <img className="test_front_image" alt={test.title} src={testImage} />
+          {test.frontPictureUrl &&
+            <img className="test_front_image" alt={test.title} src={process.env.REACT_APP_API_URL + test.frontPictureUrl} />
+          }
         </Col>
         <Col>
           <div className="test_summary_container">

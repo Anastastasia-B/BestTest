@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "accountSettings": "Account Settings",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "createTest": "Create Test"
   },
   "auth": {
     "signUp": "Sign Up",
@@ -48,7 +49,48 @@
     "enjoyedTest": "Did you enjoy this test?",
     "rateIt": "Rate It!",
     "wantToChangeRate": "Want to change your rate?",
-    "notRated": "not rated yet"
+    "notRated": "not rated yet",
+    "create": "Create your own test!",
+    "title": "Test Title",
+    "enterTitle": "Enter test title",
+    "description": "Test Description",
+    "enterDescription": "Enter test description",
+    "uploadFrontPicture": "Upload Front Picture",
+    "createButton": "Create Test",
+    "questions": "Questions",
+    "newQuestion": "New Question",
+    "editQuestion": "Edit Question",
+    "addQuestionsTip": "Add questions to your test",
+    "generalInfo": "General Information",
+    "results": "Result Options",
+    "noResults": "No result options created",
+    "newResult": "New Result Option",
+    "editResult": "Edit Result Option",
+    "maxPossibleScore": "Maximum possible score for test: ",
+    "editQuestionTip": "Tip: Click on questions to edit them",
+    "testCreated": "Test created successfully"
+  },
+  "question": {
+    "body": "Question body",
+    "enterBody": "Enter Question body",
+    "answer": "Answer",
+    "answers": "Answers",
+    "addAnswer": "Add Answer",
+    "score": "Points",
+    "enterScore": "Enter number of points for this question",
+    "answersTip": "Tip: Select a checkbox to mark an answer correct",
+    "uploadPicture": "Upload Question Picture"
+  },
+  "result": {
+    "title": "Title",
+    "enterTitle": "Enter Result Title",
+    "body": "Description",
+    "enterBody": "Enter Result Description",
+    "fromScore": "From Score",
+    "toScore": "To Score",
+    "enterFromScore": "Enter from score...",
+    "enterToScore": "Enter to score...",
+    "uploadPicture": "Upload Result Picture"
   },
   "mainPage": {
     "viewTest": "View Test",
@@ -61,7 +103,11 @@
   },
   "errors": {
     "fieldRequired": "This field is required",
-    "needToSignIn": "You need to sign in to continue"
+    "needToSignIn": "You need to sign in to continue",
+    "questionsRequired": "You need to add questions to your test",
+    "resultsRequired": "You need to add result options to your test",
+    "invalidScoreRange": "Result options score ranges must cover all values from 0 to maximum possible score for test",
+    "toScoreLessThanFromScore": "To Score must be greater than From Score"
   },
   "backendErrors": {
     "wrongPassword": "Password is incorrect",
@@ -80,6 +126,8 @@
     "testPage": "Test Page",
     "update": "Update",
     "viewMore": "View more",
-    "hide": "Hide"
+    "hide": "Hide",
+    "save": "Save",
+    "edit": "Edit"
   }
 }

@@ -13,7 +13,7 @@ const User = sequelize.define('user', {
 const Test = sequelize.define('test', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING},
-    description: {type: DataTypes.STRING(2000)},
+    description: {type: DataTypes.STRING(5000)},
     frontPictureUrl: {type: DataTypes.STRING},
     type: {type: DataTypes.STRING, defaultValue: 'A'},
     usersPassedCount: {type: DataTypes.INTEGER, defaultValue: 0},
@@ -24,13 +24,13 @@ const Question = sequelize.define('question', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     body: {type: DataTypes.STRING},
     pictureUrl: {type: DataTypes.STRING},
+    score: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
 })
 
 const AnswerOption = sequelize.define('answerOption', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     body: {type: DataTypes.STRING},
     correct: {type: DataTypes.BOOLEAN, defaultValue: false}, // type A field
-    score: {type: DataTypes.INTEGER, defaultValue: 0}, // type A field
 })
 
 const TestResult = sequelize.define('testResult', {
