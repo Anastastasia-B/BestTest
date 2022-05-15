@@ -7,10 +7,11 @@ import { useTranslation } from 'react-i18next'
 import {Context} from '../index'
 import { login } from "../http/userAPI"
 import { REGISTRATION_ROUTE, MAIN_PAGE_ROUTE } from "../utils/consts"
+import flash from "../utils/flash"
 
 const LogIn = observer(() => {
   const {t} = useTranslation()
-  const {user} = useContext(Context)
+  const {user, notification: notificationContext} = useContext(Context)
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
@@ -25,7 +26,7 @@ const LogIn = observer(() => {
       navigate(MAIN_PAGE_ROUTE)
     } catch (e) {
       if (e.response && e.response.data) {    
-        alert(t(e.response.data.message))
+        flash.danger(t(e.response.data.message), notificationContext)
       }
       else {
         console.log(e)

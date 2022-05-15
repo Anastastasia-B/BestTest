@@ -10,12 +10,13 @@ import ExpandableParagraph from '../components/ExpandableParagraph'
 import testDefaultImg from '../assets/testDefaultImg.png'
 import {PROFILE_ROUTE, PASS_TEST_ROUTE, TEST_RESULT_ROUTE, LOGIN_ROUTE} from "../utils/consts"
 import AverageRating from "../components/AverageRating"
+import flash from "../utils/flash"
 
 function TestPage() {
   const {t} = useTranslation()
   const [test, setTest] = useState(null)
   const {id} = useParams()
-  const {user: currentUser} = useContext(Context)
+  const {user: currentUser, notification: notificationContext} = useContext(Context)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function TestPage() {
 
   const passTest = () => {
     if (!currentUser?.user?.id) {
-      alert(t('errors.needToSignIn'))
+      flash.notice(t('errors.needToSignIn'), notificationContext)
       navigate(LOGIN_ROUTE)
       return
     }

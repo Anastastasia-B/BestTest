@@ -6,10 +6,11 @@ import { Context } from "./index"
 import AppRouter from "./components/AppRouter"
 import NavBar from "./components/NavBar"
 import Preload from "./components/Preload"
+import FlashNotification from "./components/FlashNotification"
 import { check } from "./http/userAPI"
 
 const App = observer(() => {
-  const {user} = useContext(Context)
+  const {user, notification} = useContext(Context)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const App = observer(() => {
     }).finally(() => setIsLoading(false))
   }, [])
 
+  const flashNotification = notification.notification
+
   if (isLoading) {
     return <Preload />
   }
@@ -26,6 +29,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <Suspense fallback={<Preload />}>
+        {flashNotification && <FlashNotification notification={flashNotification} />}
         <NavBar/>
         <AppRouter />
       </Suspense>
