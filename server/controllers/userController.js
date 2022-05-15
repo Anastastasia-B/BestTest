@@ -55,7 +55,8 @@ class UserConstroller {
         const user = await User.findOne({
             where: {id},
             include: [
-                {model: Test, as: 'testsPassed'}
+                {model: Test, as: 'testsPassed'},
+                {model: Test, as: 'createdTests'},
             ]
         })
         return res.json(user)
