@@ -1,0 +1,24 @@
+{
+  "name": "Best Test: Where future is build",
+  "short_name": "Best Test",
+  "theme_color": "#8f37ff",
+  "background_color": "#c1a4ff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "prefer_related_applications": "true",
+  "scope": "/",
+  "id": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
